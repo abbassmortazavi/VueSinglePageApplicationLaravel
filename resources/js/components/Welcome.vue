@@ -25,7 +25,10 @@
                             <td>{{ employee.name }}</td>
                             <td>{{ employee.position }}</td>
                             <td>{{ employee.email }}</td>
-                            <td>operation</td>
+                            <td>
+                                <a href="" class="btn btn-danger">Delete</a>
+                                <a href="" class="btn btn-info">Edit</a>
+                            </td>
                         </tr>    
                     </tbody>  
                 </table>
