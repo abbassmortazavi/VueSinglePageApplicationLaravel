@@ -13,7 +13,7 @@
 
     </head>
     <body class="antialiased">
-        <div id="app">
+        <div id="app" class="mt-5">
             <router-view></router-view>
         </div>
 
