@@ -27,7 +27,7 @@
                             <td>{{ employee.email }}</td>
                             <td>
                                 <a href="" class="btn btn-danger">Delete</a>
-                                <a href="" class="btn btn-info">Edit</a>
+                                <router-link :to="{name: 'Edit' , params:{'id':employee.id}}" class="btn btn-info">Edit</router-link>
                             </td>
                         </tr>    
                     </tbody>  

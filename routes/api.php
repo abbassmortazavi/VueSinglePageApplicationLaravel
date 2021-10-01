@@ -22,5 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['namespace'=>'Api' , 'prefix'=>'v1'] , function (){
     Route::post('/create' , [EmployeeController::class , 'create']);
     Route::get('/getAll' , [EmployeeController::class , 'getAll']);
+    Route::get('/getEmployee/{id}' , [EmployeeController::class , 'getEmployee']);
+    Route::post('/update/{id}' , [EmployeeController::class , 'updateData']);
 });
 

@@ -25,4 +25,22 @@ class EmployeeController extends Controller
             'data'=>$employies
         ],200);
     }
+    public function getEmployee($id)
+    {
+        $employee = Employee::whereId($id)->first();
+        return $employee;
+    }
+    public function updateData(Request $request ,$id)
+    {
+        //return $request->name;
+        $employee = Employee::whereId($id)->first();
+        //return $employee;
+        $employee->update([
+            'name'=>$request->name,
+            'position'=>$request->position,
+            'email'=>$request->email
+        ]);
+        return $employee;
+    }
 }
+
