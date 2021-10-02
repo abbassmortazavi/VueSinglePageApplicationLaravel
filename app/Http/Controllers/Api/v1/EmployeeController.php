@@ -42,5 +42,12 @@ class EmployeeController extends Controller
         ]);
         return $employee;
     }
+    public function deleteEmployee($id)
+    {
+        $employee = Employee::whereId($id)->first();
+        if ($employee) {
+            $employee->delete();
+        }
+    }
 }
 

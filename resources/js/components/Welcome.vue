@@ -26,7 +26,7 @@
                             <td>{{ employee.position }}</td>
                             <td>{{ employee.email }}</td>
                             <td>
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <a @click="deleteEmployee(employee.id)" class="btn btn-danger">Delete</a>
                                 <router-link :to="{name: 'Edit' , params:{'id':employee.id}}" class="btn btn-info">Edit</router-link>
                             </td>
                         </tr>    
@@ -52,6 +52,31 @@ export default {
             }).catch((err) => {
                 console.log(err);
             });
+        },
+        deleteEmployee(id){
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete('/api/v1/deleteEmployee/' + id)
+                        .then((result) => {
+                            this.getAll();
+                            toast.fire({
+                                icon: 'success',
+                                title: 'Deleted in successfully'
+                            });
+                        }).catch((err) => {
+                            console.log(err);
+                        });
+                    }
+                });
+            
         }
     },
     mounted(){

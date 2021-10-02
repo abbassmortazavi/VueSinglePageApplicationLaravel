@@ -50,6 +50,10 @@ export default {
             let id = this.$route.params.id;
             axios.post('/api/v1/update/' + id , this.dataform)
             .then((result) => {
+                toast.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully'
+                });
                 this.$router.push('/');
             }).catch((err) => {
                 console.log(err);

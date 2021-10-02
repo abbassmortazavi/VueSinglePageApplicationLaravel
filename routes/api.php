@@ -24,5 +24,6 @@ Route::group(['namespace'=>'Api' , 'prefix'=>'v1'] , function (){
     Route::get('/getAll' , [EmployeeController::class , 'getAll']);
     Route::get('/getEmployee/{id}' , [EmployeeController::class , 'getEmployee']);
     Route::post('/update/{id}' , [EmployeeController::class , 'updateData']);
+    Route::delete('/deleteEmployee/{id}' , [EmployeeController::class , 'deleteEmployee']);
 });
 
