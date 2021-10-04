@@ -2399,7 +2399,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      formData: {
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      },
+      errors: {}
+    };
+  },
+  methods: {
+    registerUser: function registerUser() {
+      var _this = this;
+
+      axios.post('/api/v1/registerUser', this.formData).then(function (result) {
+        toast.fire({
+          icon: 'success',
+          title: 'Signed in successfully'
+        });
+
+        _this.$router.push('/login');
+
+        _this.name = _this.email = _this.password = _this.passwordConfirm = '';
+        _this.errors = {};
+      })["catch"](function (err) {
+        _this.errors = err.response.data.errors;
+        toast.fire({
+          icon: 'error',
+          title: err.response.data.message
+        });
+      });
+    }
+  },
+  mounted: function mounted() {}
+});
 
 /***/ }),
 
@@ -7108,7 +7156,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n\r\n/* BASIC */\nhtml[data-v-d4f9cbe2] {\r\n  background-color: #56baed;\n}\nbody[data-v-d4f9cbe2] {\r\n  font-family: \"Poppins\", sans-serif;\r\n  height: 100vh;\n}\na[data-v-d4f9cbe2] {\r\n  color: #92badd;\r\n  display:inline-block;\r\n  text-decoration: none;\r\n  font-weight: 400;\n}\nh2[data-v-d4f9cbe2] {\r\n  text-align: center;\r\n  font-size: 16px;\r\n  font-weight: 600;\r\n  text-transform: uppercase;\r\n  display:inline-block;\r\n  margin: 40px 8px 10px 8px; \r\n  color: #cccccc;\n}\r\n\r\n\r\n\r\n/* STRUCTURE */\n.wrapper[data-v-d4f9cbe2] {\r\n  display: flex;\r\n  align-items: center;\r\n  flex-direction: column; \r\n  justify-content: center;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  padding: 20px;\n}\n#formContent[data-v-d4f9cbe2] {\r\n  border-radius: 10px 10px 10px 10px;\r\n  background: #fff;\r\n  padding: 30px;\r\n  width: 90%;\r\n  max-width: 450px;\r\n  position: relative;\r\n  padding: 0px;\r\n  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\r\n  text-align: center;\n}\n#formFooter[data-v-d4f9cbe2] {\r\n  background-color: #f6f6f6;\r\n  border-top: 1px solid #dce8f1;\r\n  padding: 25px;\r\n  text-align: center;\r\n  border-radius: 0 0 10px 10px;\n}\r\n\r\n\r\n\r\n/* TABS */\nh2.inactive[data-v-d4f9cbe2] {\r\n  color: #cccccc;\n}\nh2.active[data-v-d4f9cbe2] {\r\n  color: #0d0d0d;\r\n  border-bottom: 2px solid #5fbae9;\n}\r\n\r\n\r\n\r\n/* FORM TYPOGRAPHY*/\ninput[type=button][data-v-d4f9cbe2], input[type=submit][data-v-d4f9cbe2], input[type=reset][data-v-d4f9cbe2]  {\r\n  background-color: #56baed;\r\n  border: none;\r\n  color: white;\r\n  padding: 15px 80px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  text-transform: uppercase;\r\n  font-size: 13px;\r\n  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\r\n  border-radius: 5px 5px 5px 5px;\r\n  margin: 5px 20px 40px 20px;\r\n  transition: all 0.3s ease-in-out;\n}\ninput[type=button][data-v-d4f9cbe2]:hover, input[type=submit][data-v-d4f9cbe2]:hover, input[type=reset][data-v-d4f9cbe2]:hover  {\r\n  background-color: #39ace7;\n}\ninput[type=button][data-v-d4f9cbe2]:active, input[type=submit][data-v-d4f9cbe2]:active, input[type=reset][data-v-d4f9cbe2]:active  {\r\n  transform: scale(0.95);\n}\ninput[type=text][data-v-d4f9cbe2] {\r\n  background-color: #f6f6f6;\r\n  border: none;\r\n  color: #0d0d0d;\r\n  padding: 15px 32px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  margin: 5px;\r\n  width: 85%;\r\n  border: 2px solid #f6f6f6;\r\n  transition: all 0.5s ease-in-out;\r\n  border-radius: 5px 5px 5px 5px;\n}\ninput[type=text][data-v-d4f9cbe2]:focus {\r\n  background-color: #fff;\r\n  border-bottom: 2px solid #5fbae9;\n}\ninput[type=text][data-v-d4f9cbe2]:placeholder {\r\n  color: #cccccc;\n}\r\n\r\n\r\n\r\n/* ANIMATIONS */\r\n\r\n/* Simple CSS3 Fade-in-down Animation */\n.fadeInDown[data-v-d4f9cbe2] {\r\n  -webkit-animation-name: fadeInDown-data-v-d4f9cbe2;\r\n  animation-name: fadeInDown-data-v-d4f9cbe2;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n@-webkit-keyframes fadeInDown-data-v-d4f9cbe2 {\n0% {\r\n    opacity: 0;\r\n    transform: translate3d(0, -100%, 0);\n}\n100% {\r\n    opacity: 1;\r\n    transform: none;\n}\n}\n@keyframes fadeInDown-data-v-d4f9cbe2 {\n0% {\r\n    opacity: 0;\r\n    transform: translate3d(0, -100%, 0);\n}\n100% {\r\n    opacity: 1;\r\n    transform: none;\n}\n}\r\n\r\n/* Simple CSS3 Fade-in Animation */\n@-webkit-keyframes fadeIn-data-v-d4f9cbe2 {\nfrom { opacity:0;\n}\nto { opacity:1;\n}\n}\n@keyframes fadeIn-data-v-d4f9cbe2 {\nfrom { opacity:0;\n}\nto { opacity:1;\n}\n}\n.fadeIn[data-v-d4f9cbe2] {\r\n  opacity:0;\r\n  -webkit-animation:fadeIn-data-v-d4f9cbe2 ease-in 1;\r\n  animation:fadeIn-data-v-d4f9cbe2 ease-in 1;\r\n\r\n  -webkit-animation-fill-mode:forwards;\r\n  animation-fill-mode:forwards;\r\n\r\n  -webkit-animation-duration:1s;\r\n  animation-duration:1s;\n}\n.fadeIn.first[data-v-d4f9cbe2] {\r\n  -webkit-animation-delay: 0.4s;\r\n  animation-delay: 0.4s;\n}\n.fadeIn.second[data-v-d4f9cbe2] {\r\n  -webkit-animation-delay: 0.6s;\r\n  animation-delay: 0.6s;\n}\n.fadeIn.third[data-v-d4f9cbe2] {\r\n  -webkit-animation-delay: 0.8s;\r\n  animation-delay: 0.8s;\n}\n.fadeIn.fourth[data-v-d4f9cbe2] {\r\n  -webkit-animation-delay: 1s;\r\n  animation-delay: 1s;\n}\r\n\r\n/* Simple CSS3 Fade-in Animation */\n.underlineHover[data-v-d4f9cbe2]:after {\r\n  display: block;\r\n  left: 0;\r\n  bottom: -10px;\r\n  width: 0;\r\n  height: 2px;\r\n  background-color: #56baed;\r\n  content: \"\";\r\n  transition: width 0.2s;\n}\n.underlineHover[data-v-d4f9cbe2]:hover {\r\n  color: #0d0d0d;\n}\n.underlineHover[data-v-d4f9cbe2]:hover:after{\r\n  width: 100%;\n}\r\n\r\n\r\n\r\n/* OTHERS */\n*[data-v-d4f9cbe2]:focus {\r\n    outline: none;\n}\n#icon[data-v-d4f9cbe2] {\r\n  width:60%;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n\r\n/* BASIC */\nhtml[data-v-d4f9cbe2] {\r\n  background-color: #56baed;\n}\nbody[data-v-d4f9cbe2] {\r\n  font-family: \"Poppins\", sans-serif;\r\n  height: 100vh;\n}\na[data-v-d4f9cbe2] {\r\n  color: #92badd;\r\n  display:inline-block;\r\n  text-decoration: none;\r\n  font-weight: 400;\n}\nh2[data-v-d4f9cbe2] {\r\n  text-align: center;\r\n  font-size: 16px;\r\n  font-weight: 600;\r\n  text-transform: uppercase;\r\n  display:inline-block;\r\n  margin: 40px 8px 10px 8px; \r\n  color: #cccccc;\n}\r\n\r\n\r\n\r\n/* STRUCTURE */\n.wrapper[data-v-d4f9cbe2] {\r\n  display: flex;\r\n  align-items: center;\r\n  flex-direction: column; \r\n  justify-content: center;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  padding: 20px;\n}\n#formContent[data-v-d4f9cbe2] {\r\n  border-radius: 10px 10px 10px 10px;\r\n  background: #fff;\r\n  padding: 30px;\r\n  width: 90%;\r\n  max-width: 450px;\r\n  position: relative;\r\n  padding: 0px;\r\n  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\r\n  text-align: center;\n}\n#formFooter[data-v-d4f9cbe2] {\r\n  background-color: #f6f6f6;\r\n  border-top: 1px solid #dce8f1;\r\n  padding: 25px;\r\n  text-align: center;\r\n  border-radius: 0 0 10px 10px;\n}\r\n\r\n\r\n\r\n/* TABS */\nh2.inactive[data-v-d4f9cbe2] {\r\n  color: #cccccc;\n}\nh2.active[data-v-d4f9cbe2] {\r\n  color: #0d0d0d;\r\n  border-bottom: 2px solid #5fbae9;\n}\r\n\r\n\r\n\r\n/* FORM TYPOGRAPHY*/\ninput[type=button][data-v-d4f9cbe2], input[type=submit][data-v-d4f9cbe2], input[type=reset][data-v-d4f9cbe2]  {\r\n  background-color: #56baed;\r\n  border: none;\r\n  color: white;\r\n  padding: 15px 80px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  text-transform: uppercase;\r\n  font-size: 13px;\r\n  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\r\n  border-radius: 5px 5px 5px 5px;\r\n  margin: 5px 20px 40px 20px;\r\n  transition: all 0.3s ease-in-out;\n}\ninput[type=button][data-v-d4f9cbe2]:hover, input[type=submit][data-v-d4f9cbe2]:hover, input[type=reset][data-v-d4f9cbe2]:hover  {\r\n  background-color: #39ace7;\n}\ninput[type=button][data-v-d4f9cbe2]:active, input[type=submit][data-v-d4f9cbe2]:active, input[type=reset][data-v-d4f9cbe2]:active  {\r\n  transform: scale(0.95);\n}\ninput[type=text][data-v-d4f9cbe2] {\r\n  background-color: #f6f6f6;\r\n  border: none;\r\n  color: #0d0d0d;\r\n  padding: 15px 32px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  margin: 5px;\r\n  width: 85%;\r\n  border: 2px solid #f6f6f6;\r\n  transition: all 0.5s ease-in-out;\r\n  border-radius: 5px 5px 5px 5px;\n}\ninput[type=text][data-v-d4f9cbe2]:focus {\r\n  background-color: #fff;\r\n  border-bottom: 2px solid #5fbae9;\n}\ninput[type=text][data-v-d4f9cbe2]:placeholder {\r\n  color: #cccccc;\n}\ninput[type=password][data-v-d4f9cbe2] {\r\n  background-color: #f6f6f6;\r\n  border: none;\r\n  color: #0d0d0d;\r\n  padding: 15px 32px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  margin: 5px;\r\n  width: 85%;\r\n  border: 2px solid #f6f6f6;\r\n  transition: all 0.5s ease-in-out;\r\n  border-radius: 5px 5px 5px 5px;\n}\ninput[type=password][data-v-d4f9cbe2]:focus {\r\n  background-color: #fff;\r\n  border-bottom: 2px solid #5fbae9;\n}\ninput[type=password][data-v-d4f9cbe2]:placeholder {\r\n  color: #cccccc;\n}\r\n\r\n\r\n/* ANIMATIONS */\r\n\r\n/* Simple CSS3 Fade-in-down Animation */\n.fadeInDown[data-v-d4f9cbe2] {\r\n  -webkit-animation-name: fadeInDown-data-v-d4f9cbe2;\r\n  animation-name: fadeInDown-data-v-d4f9cbe2;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\n}\n@-webkit-keyframes fadeInDown-data-v-d4f9cbe2 {\n0% {\r\n    opacity: 0;\r\n    transform: translate3d(0, -100%, 0);\n}\n100% {\r\n    opacity: 1;\r\n    transform: none;\n}\n}\n@keyframes fadeInDown-data-v-d4f9cbe2 {\n0% {\r\n    opacity: 0;\r\n    transform: translate3d(0, -100%, 0);\n}\n100% {\r\n    opacity: 1;\r\n    transform: none;\n}\n}\r\n\r\n/* Simple CSS3 Fade-in Animation */\n@-webkit-keyframes fadeIn-data-v-d4f9cbe2 {\nfrom { opacity:0;\n}\nto { opacity:1;\n}\n}\n@keyframes fadeIn-data-v-d4f9cbe2 {\nfrom { opacity:0;\n}\nto { opacity:1;\n}\n}\n.fadeIn[data-v-d4f9cbe2] {\r\n  opacity:0;\r\n  -webkit-animation:fadeIn-data-v-d4f9cbe2 ease-in 1;\r\n  animation:fadeIn-data-v-d4f9cbe2 ease-in 1;\r\n\r\n  -webkit-animation-fill-mode:forwards;\r\n  animation-fill-mode:forwards;\r\n\r\n  -webkit-animation-duration:1s;\r\n  animation-duration:1s;\n}\n.fadeIn.first[data-v-d4f9cbe2] {\r\n  -webkit-animation-delay: 0.4s;\r\n  animation-delay: 0.4s;\n}\n.fadeIn.second[data-v-d4f9cbe2] {\r\n  -webkit-animation-delay: 0.6s;\r\n  animation-delay: 0.6s;\n}\n.fadeIn.third[data-v-d4f9cbe2] {\r\n  -webkit-animation-delay: 0.8s;\r\n  animation-delay: 0.8s;\n}\n.fadeIn.fourth[data-v-d4f9cbe2] {\r\n  -webkit-animation-delay: 1s;\r\n  animation-delay: 1s;\n}\r\n\r\n/* Simple CSS3 Fade-in Animation */\n.underlineHover[data-v-d4f9cbe2]:after {\r\n  display: block;\r\n  left: 0;\r\n  bottom: -10px;\r\n  width: 0;\r\n  height: 2px;\r\n  background-color: #56baed;\r\n  content: \"\";\r\n  transition: width 0.2s;\n}\n.underlineHover[data-v-d4f9cbe2]:hover {\r\n  color: #0d0d0d;\n}\n.underlineHover[data-v-d4f9cbe2]:hover:after{\r\n  width: 100%;\n}\r\n\r\n\r\n\r\n/* OTHERS */\n*[data-v-d4f9cbe2]:focus {\r\n    outline: none;\n}\n#icon[data-v-d4f9cbe2] {\r\n  width:60%;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -42513,7 +42561,154 @@ var render = function() {
     _c("div", { attrs: { id: "formContent" } }, [
       _vm._m(0),
       _vm._v(" "),
-      _vm._m(1),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.registerUser.apply(null, arguments)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.name,
+                  expression: "formData.name"
+                }
+              ],
+              staticClass: "fadeIn second",
+              attrs: { type: "text", id: "login", name: "login" },
+              domProps: { value: _vm.formData.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.formData, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.name
+              ? _c("span", { staticClass: "aler alert-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.name[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.email,
+                  expression: "formData.email"
+                }
+              ],
+              staticClass: "fadeIn second",
+              attrs: { type: "text", id: "login", name: "email" },
+              domProps: { value: _vm.formData.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.formData, "email", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.email
+              ? _c("span", { staticClass: "alert alert-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.email[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "email" } }, [_vm._v("Password")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.password,
+                  expression: "formData.password"
+                }
+              ],
+              staticClass: "fadeIn",
+              attrs: { type: "password", id: "login", name: "password" },
+              domProps: { value: _vm.formData.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.formData, "password", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.password
+              ? _c("span", { staticClass: "alert alert-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.password[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "passwordConfirm" } }, [
+              _vm._v("Password Conifrm")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.password_confirmation,
+                  expression: "formData.password_confirmation"
+                }
+              ],
+              staticClass: "fadeIn",
+              attrs: { type: "password", id: "login", name: "passwordConfirm" },
+              domProps: { value: _vm.formData.password_confirmation },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.formData,
+                    "password_confirmation",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.password_confirmation
+              ? _c("span", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(_vm.errors.password_confirmation[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -42549,43 +42744,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("form", [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "fadeIn second",
-          attrs: { type: "text", id: "login", name: "login" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "fadeIn second",
-          attrs: { type: "text", id: "login", name: "email" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "email" } }, [_vm._v("Password")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "fadeIn",
-          attrs: { type: "text", id: "login", name: "password" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "passwordConfirm" } }, [
-          _vm._v("Password Conifrm")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "fadeIn",
-          attrs: { type: "text", id: "login", name: "passwordConfirm" }
-        })
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-info", attrs: { type: "submit" } }, [
+        _vm._v("Register")
       ])
     ])
   }

@@ -9,22 +9,34 @@
             </div>
 
             <!-- Login Form -->
-            <form>
+            <form @submit.prevent="registerUser">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="login" class="fadeIn second" name="login">
+                    <input type="text" id="login" v-model="formData.name" class="fadeIn second" name="login">
+                    <span class="aler alert-danger" v-if="errors.name">{{ errors.name[0] }}</span>
+                    <!-- <p class="text-danger" v-text="errors.name"></p> -->
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" id="login" class="fadeIn second" name="email">
+                    <input type="text" id="login" v-model="formData.email"  class="fadeIn second" name="email">
+                    <!-- <p class="text-danger" v-text="errors.email"></p> -->
+                     <span class="alert alert-danger" v-if="errors.email">{{ errors.email[0] }}</span>
                 </div>
                 <div class="form-group">
                     <label for="email">Password</label>
-                    <input type="text" id="login" class="fadeIn" name="password">
+                    <input type="password" id="login" v-model="formData.password"  class="fadeIn" name="password">
+                    <!-- <p class="text-danger" v-text="errors.password"></p> -->
+                    <span class="alert alert-danger" v-if="errors.password">{{ errors.password[0] }}</span>
                 </div>
                 <div class="form-group">
                     <label for="passwordConfirm">Password Conifrm</label>
-                    <input type="text" id="login" class="fadeIn" name="passwordConfirm">
+                    <input type="password" id="login" class="fadeIn" v-model="formData.password_confirmation"  name="passwordConfirm">
+                    <!-- <p class="text-danger" v-text="errors.passwordConfirm"></p> -->
+                    <span class="text-danger" v-if="errors.password_confirmation">{{ errors.password_confirmation[0] }}</span>
+                </div> 
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info">Register</button>
                 </div> 
             </form>
 
@@ -38,7 +50,40 @@
 </template>
 <script>
 export default {
-    
+    data() {
+      return {
+        formData: {
+          name: '',
+          email: '',
+          password: '',
+          password_confirmation: ''
+        },
+        errors:{}
+      }
+    },
+    methods:{
+      registerUser(){
+        axios.post('/api/v1/registerUser' , this.formData)
+        .then((result) => {
+          toast.fire({
+              icon: 'success',
+              title: 'Signed in successfully'
+          });
+          this.$router.push('/login');
+          this.name = this.email = this.password = this.passwordConfirm = '';
+          this.errors = {};
+        }).catch((err) => {
+          this.errors = err.response.data.errors;
+          toast.fire({
+              icon: 'error',
+              title: err.response.data.message
+          });
+        });
+      }
+    },
+    mounted(){
+      
+    }
 }
 </script>
 <style scoped>
@@ -189,6 +234,35 @@ input[type=text]:placeholder {
   color: #cccccc;
 }
 
+input[type=password] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+input[type=password]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+
+input[type=password]:placeholder {
+  color: #cccccc;
+}
 
 
 /* ANIMATIONS */
