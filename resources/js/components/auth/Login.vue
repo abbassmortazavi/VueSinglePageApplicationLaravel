@@ -9,17 +9,19 @@
             </div>
 
             <!-- Login Form -->
-            <form>
+            <form @submit.prevent="loginUser">
             <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" id="login" class="fadeIn second" name="email">
+                    <input type="text" id="login" v-model="formData.email" class="fadeIn second" name="email">
+                    <span class="alert alert-danger" v-if="errors.email">{{ errors.email[0] }}</span>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="text" id="login" class="fadeIn second" name="password">
+                    <input type="text" id="login" v-model="formData.password" class="fadeIn second" name="password">
+                    <span class="alert alert-danger" v-if="errors.password">{{ errors.password[0] }}</span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" id="login" class="fadeIn second" name="email">
+                    <input type="submit" id="login" class="fadeIn second" value="Login">
                 </div>
             </form>
 
@@ -34,7 +36,38 @@
 </template>
 <script>
 export default {
-    
+    data() {
+      return {
+        formData: {
+          email: '',
+          password: '',
+          device_name: 'browser'
+        },
+        errors: {}
+      }
+    },
+    methods:{
+      loginUser(){
+        axios.post('/api/v1/loginUser' , this.formData)
+        .then((result) => {
+          console.log(result);
+          localStorage.setItem("user", JSON.stringify(result.data));
+          // localStorage.setItem('token' , result.data.token);
+          // localStorage.setItem('userId' , result.data.user.id);
+          toast.fire({
+              icon: 'success',
+              title: 'Signed in successfully'
+          });
+          this.$router.push('/');
+        }).catch((err) => {
+          this.errors = err.response.data.errors;
+           toast.fire({
+              icon: 'error',
+              title: err.response.data.message
+          });
+        });
+      }
+    }
 }
 </script>
 <style scoped>

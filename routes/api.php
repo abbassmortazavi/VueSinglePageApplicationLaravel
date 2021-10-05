@@ -27,5 +27,8 @@ Route::group(['namespace'=>'Api' , 'prefix'=>'v1'] , function (){
     Route::post('/update/{id}' , [EmployeeController::class , 'updateData']);
     Route::delete('/deleteEmployee/{id}' , [EmployeeController::class , 'deleteEmployee']);
     Route::post('/registerUser' , [UserController::class , 'registerUser']);
+    Route::post('/loginUser' , [UserController::class , 'loginUser']);
+    Route::post('/logoutUser' , [UserController::class , 'logoutUser'])->middleware('auth:sanctum');
+    Route::post('/checkUserExpire' , [UserController::class , 'checkUserExpire']);
 });
 

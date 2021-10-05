@@ -2,8 +2,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <h1 class="text-center">Welcome Page</h1>
+                <h1 class="text-center">Welcome Page - {{ currentUser.name }}</h1>
                 <router-link to="/create" class="btn btn-info float-right">Create</router-link>
+                <a @click="logoutUser" class="btn btn-outline-primary">Logout</a>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -40,7 +41,12 @@
 export default {
     data() {
         return {
-            emploeeis : []
+            emploeeis : [],
+            // userId: localStorage.getItem('userId'),
+            // token: localStorage.getItem('token'),
+            user: JSON.parse(localStorage.getItem('user')),
+            currentUser : {},
+            expires_in: ''
         }
     },
     methods:{
@@ -77,10 +83,42 @@ export default {
                     }
                 });
             
+        },
+        logoutUser(){
+            axios.post('/api/v1/logoutUser')
+            .then((result) => {
+               // console.log(result);
+                // localStorage.removeItem('token');
+                // localStorage.removeItem('userId');
+                localStorage.removeItem('user');
+                this.$router.push('/login');
+            }).catch((err) => {
+                console.log(err);
+            });
+        },
+        checkUserExpire(){
+           axios.post('/api/v1/checkUserExpire' , {expires_in: this.user.expires_in} )
+            .then((result) => {
+                console.log(result.data);
+                if (result.data.expire == false) {
+                    localStorage.removeItem('user');
+                    this.$router.push('/login');
+                }
+            }).catch((err) => {
+                console.log(err);
+            });
         }
     },
     mounted(){
         this.getAll();
+        this.checkUserExpire();
+         axios.get('/api/user' , {headers: { Authorization: `Bearer ${this.user.access_token}`}})
+            .then((result) => {
+               // console.log(result);
+                this.currentUser = result.data;
+            }).catch((err) => {
+                console.log(err);
+            });
     }
 }
 </script>

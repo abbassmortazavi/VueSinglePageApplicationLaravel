@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
 Vue.use(VueSweetalert2);
 window.Swal = Swal;
 
@@ -24,7 +24,12 @@ window.toast = Swal.mixin({
 });
 
 function loggedIn(){
-    return false;
+    let user = JSON.parse(localStorage.getItem('user'));
+   // console.log(JSON.parse(user));
+   if (user) {
+      return user.access_token;
+   }
+    
 }
 
 router.beforeEach((to, from, next) => {
@@ -34,7 +39,7 @@ router.beforeEach((to, from, next) => {
       if (!loggedIn()) {
         next({
           path: '/login',
-          query: { redirect: to.fullPath }
+          //query: { redirect: to.fullPath }
         })
       } else {
         next()
@@ -43,7 +48,7 @@ router.beforeEach((to, from, next) => {
         if (loggedIn()) {
             next({
               path: '/',
-              query: { redirect: to.fullPath }
+              //query: { redirect: to.fullPath }
             })
           } else {
             next()
